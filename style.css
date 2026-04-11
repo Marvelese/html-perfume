@@ -1,0 +1,356 @@
+/* === GLOBAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* === BODY === */
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background-color: #fdfcfb;
+  color: #3a2b1a;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* === COLOR VARIABLES === */
+:root {
+  --gold: #d4a017;
+  --gold-dark: #a67817;
+  --coffee: #b8a999;
+  --ivory: #faf8f5;
+  --charcoal: #2a2a2a;
+  --white: #fff;
+}
+
+/* =========================================
+   ✅ FINAL RESPONSIVE NAVBAR (CLEAN + FIXED)
+========================================= */
+nav {
+  background-color: rgba(75, 45, 10, 0.85); /* deep brown tone */
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--white);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  bottom: -4px;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+/* -----------------------------
+   🔥 MOBILE RESPONSIVE NAVBAR
+------------------------------ */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  gap: 4px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* Animate hamburger to X when open */
+nav.open .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+nav.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+nav.open .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* -----------------------------
+   📱 Mobile Dropdown (Centered)
+------------------------------ */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    max-width: 320px;
+    padding: 1rem 1.25rem;
+    gap: 0.75rem;
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    animation: fadeIn 0.3s ease;
+    z-index: 999;
+  }
+
+  nav.open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+  position: relative;
+  width: 100%;
+  font-size: 1.05rem;
+  text-align: center;
+  color: white;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.nav-links a::after {
+  left: 50%; /* start underline from center */
+  transform: translateX(-50%); /* center it */
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 50%; /* balanced width */
+}
+
+
+  .nav-links a:hover {
+    color: #ffd700;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -10px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+/* === HERO SECTION === */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.5)),
+    url('images/ulysse-pointcheval--j6LLsAehUo-unsplash.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #eaeaea;
+}
+
+.hero-buttons .btn {
+  margin: 0 10px;
+}
+
+/* === BUTTONS === */
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background-color: var(--gold);
+  color: var(--charcoal);
+}
+
+.btn.primary:hover {
+  background-color: var(--gold-dark);
+  transform: translateY(-3px);
+}
+
+.btn.secondary {
+  border: 2px solid var(--gold);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background-color: var(--gold);
+  color: var(--charcoal);
+  transform: translateY(-3px);
+}
+
+/* === SHOP SECTION === */
+.shop-section {
+  background-color: var(--coffee);
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.shop-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: var(--charcoal);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-card {
+  background-color: var(--ivory);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.product-card h3 {
+  font-size: 1.3rem;
+  color: var(--charcoal);
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 10px 0;
+}
+
+.price {
+  color: var(--gold-dark);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.buy-btn {
+  margin-top: 0.5rem;
+  background-color: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.buy-btn:hover {
+  background-color: var(--gold-dark);
+  transform: scale(1.05);
+}
+
+/* === FOOTER === */
+footer {
+  background-color: #4b2d0a;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}
